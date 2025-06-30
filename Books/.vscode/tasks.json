@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start .NET Server",
+            "type": "shell",
+            "command": "dotnet",
+            "args": ["build", "&&", "dotnet", "bin/Debug/net9.0/books.Server.dll"],
+            "options": {
+                "cwd": "${workspaceFolder}/books.Server"
+            },
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Start React Client",
+            "type": "shell",
+            "command": "npm",
+            "args": ["start"],
+            "options": {
+                "cwd": "${workspaceFolder}/books.client"
+            },
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": []
+        },
+        {
+            "label": "Start Both Applications",
+            "dependsOrder": "parallel",
+            "dependsOn": [
+                "Start .NET Server",
+                "Start React Client"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
